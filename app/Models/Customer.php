@@ -20,4 +20,9 @@ class Customer extends Model
     {
         return $this->hasOne(Address::class);
     }
+
+    public function cabinetJobs()
+    {
+        return $this->hasMany(CabinetJob::class);
+    }
 }

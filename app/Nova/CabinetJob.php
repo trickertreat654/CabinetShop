@@ -5,20 +5,18 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasOne;
-
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Customer extends Resource
+class CabinetJob extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Customer>
+     * @var class-string<\App\Models\CabinetJob>
      */
-    public static $model = \App\Models\Customer::class;
+    public static $model = \App\Models\CabinetJob::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -45,13 +43,12 @@ class Customer extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Account')->nullable(),
-            Text::make('Name'),
-            Text::make('Email'),
-            Text::make('Phone'),
-            HasMany::make('CabinetJobs'),
-            HasOne::make('Address'),
-
+            BelongsTo::make('Customer'),
+            Select::make('Status')->options([
+                'pending' => 'Pending',
+                'in_progress' => 'In Progress',
+                'completed' => 'Completed',
+            ]),
         ];
     }
 

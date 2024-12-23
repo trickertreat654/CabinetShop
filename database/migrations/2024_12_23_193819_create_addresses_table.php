@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->string('street');
-            $table->string('city');
+            $table->string('city')->nullable();
             $table->string('state')->default('CA');
-            $table->string('zip');
+            $table->string('zip')->nullable();
             $table->timestamps();
         });
     }
