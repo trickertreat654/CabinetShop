@@ -4,21 +4,23 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\HasMany;
-
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Select;
+use Carbon\Carbon;
+
+
+
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class CabinetJob extends Resource
+class Trip extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\CabinetJob>
+     * @var class-string<\App\Models\Trip>
      */
-    public static $model = \App\Models\CabinetJob::class;
+    public static $model = \App\Models\Trip::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -45,14 +47,12 @@ class CabinetJob extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Customer'),
-            Select::make('Status')->options([
-                'pending' => 'Pending',
-                'in_progress' => 'In Progress',
-                'completed' => 'Completed',
-            ]),
-            HasMany::make('Trips'),
-            HasMany::make('Images'),
+            BelongsTo::make('CabinetJob'),
+            DateTime::make('scheduled_at')->default(function () {
+                return Carbon::now()->startOfMinute();
+            }),
+            Textarea::make('materials')->sortable()->nullable(),
+            Textarea::make('work_done')->sortable()->nullable(),
         ];
     }
 

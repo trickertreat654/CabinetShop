@@ -15,5 +15,15 @@ class CabinetJob extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
     
 }

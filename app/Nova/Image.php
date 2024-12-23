@@ -4,21 +4,18 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\HasMany;
-
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Image as Images;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class CabinetJob extends Resource
+class Image extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\CabinetJob>
+     * @var class-string<\App\Models\Image>
      */
-    public static $model = \App\Models\CabinetJob::class;
+    public static $model = \App\Models\Image::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -45,14 +42,8 @@ class CabinetJob extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Customer'),
-            Select::make('Status')->options([
-                'pending' => 'Pending',
-                'in_progress' => 'In Progress',
-                'completed' => 'Completed',
-            ]),
-            HasMany::make('Trips'),
-            HasMany::make('Images'),
+            BelongsTo::make('CabinetJob'),
+            Images::make('Path'),
         ];
     }
 
