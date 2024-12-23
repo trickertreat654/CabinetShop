@@ -9,4 +9,9 @@ class Account extends Model
 {
     /** @use HasFactory<\Database\Factories\AccountFactory> */
     use HasFactory;
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
 }

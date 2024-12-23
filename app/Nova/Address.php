@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Address extends Resource
@@ -40,6 +41,11 @@ class Address extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Street'),
+            Text::make('City'),
+            Text::make('State')->default('CA'),
+            Text::make('Zip'),
+
         ];
     }
 
