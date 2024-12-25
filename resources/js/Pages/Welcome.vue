@@ -144,7 +144,7 @@ function handleImageError() {
                                         </h2>
 
                                         <p class="mt-4 text-sm/relaxed">
-                                           My Big Butt
+                                           My Big Ass
                                         </p>
                                     </div>
                                 </div>
