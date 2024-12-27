@@ -25,5 +25,17 @@ class CabinetJob extends Model
         return $this->hasMany(Image::class);
     }
 
+    protected static function booted()
+    {
+        static::updated(function ($cabinetJob) {
+            \Log::info('is_completed current: ' . $cabinetJob->is_completed);
+            \Log::info('is_completed original: ' . $cabinetJob->getOriginal('is_completed'));
+    
+            if ($cabinetJob->is_completed && $cabinetJob->getOriginal('is_completed') == false) {
+                \Mail::to('trickertreat654@gmail.com')->send(new \App\Mail\CabinetJobCompleted($cabinetJob));
+            }
+        });
+    }
+
     
 }

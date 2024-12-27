@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('cabinet_jobs', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->string('status')->default('pending');
+            // $table->string('status')->default('pending');
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }

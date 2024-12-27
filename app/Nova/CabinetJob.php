@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Boolean;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Select;
@@ -46,11 +47,8 @@ class CabinetJob extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Customer'),
-            Select::make('Status')->options([
-                'pending' => 'Pending',
-                'in_progress' => 'In Progress',
-                'completed' => 'Completed',
-            ]),
+            Text::make('Title'),
+            Boolean::make('Is Completed'),
             HasMany::make('Trips'),
             HasMany::make('Images'),
         ];
