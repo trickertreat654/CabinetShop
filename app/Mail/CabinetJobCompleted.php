@@ -15,7 +15,9 @@ class CabinetJobCompleted extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $cabinetJob;
-
+    public $customer;
+    public $trips;
+    public $images;
 
     /**
      * Create a new message instance.
@@ -24,7 +26,9 @@ class CabinetJobCompleted extends Mailable implements ShouldQueue
     {
         //
         $this->cabinetJob = $cabinetJob;
-
+        $this->customer = $cabinetJob->customer; // Assuming customer exists
+        $this->trips = $cabinetJob->trips; // Assuming trips relation is loaded
+        $this->images = $cabinetJob->images; // Assuming images relation is loaded
     }
 
     /**
@@ -46,8 +50,11 @@ class CabinetJobCompleted extends Mailable implements ShouldQueue
             view: 'emails.cabinet-job-completed',
             with: [
                 'jobTitle' => $this->cabinetJob->title,
-                'completedAt' => $this->cabinetJob->updated_at,
-                // 'userName' => $this->cabinetJob->user->name,
+                'jobDescription' => $this->cabinetJob->description,
+                'customerName' => $this->customer->name,
+                'customerEmail' => $this->customer->email,
+                'trips' => $this->trips,
+                'images' => $this->images,
             ],
         );
     }
