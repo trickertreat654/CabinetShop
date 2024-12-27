@@ -51,6 +51,8 @@ class CabinetJobCompleted extends Mailable implements ShouldQueue
             with: [
                 'jobTitle' => $this->cabinetJob->title,
                 'jobDescription' => $this->cabinetJob->description,
+                'accountName' => $this->customer->account->name,
+                'accountEmail' => $this->customer->account->email,
                 'customerName' => $this->customer->name,
                 'customerEmail' => $this->customer->email,
                 'trips' => $this->trips,

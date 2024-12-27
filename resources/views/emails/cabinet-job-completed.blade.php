@@ -42,6 +42,12 @@
         </div>
 
         <div class="details">
+            <h2>Account Details:</h2>
+            <p><strong>Name:</strong> {{ $customerName }}</p>
+            <p><strong>Email:</strong> {{ $customerEmail }}</p>
+        </div>
+
+        <div class="details">
             <h2>Customer Details:</h2>
             <p><strong>Name:</strong> {{ $customerName }}</p>
             <p><strong>Email:</strong> {{ $customerEmail }}</p>
