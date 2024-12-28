@@ -21,6 +21,7 @@ Schedule::call(function () {
 
     if ($trips->count()) {
         // Send one email containing all trips
-        Mail::to('trickertreat654@gmail.com')->queue(new TripReminder($trips));
+        Mail::to(['trickertreat654@gmail.com','cabinetsbyjohn@yahoo.com'])->queue(new TripReminder($trips));
     }
-})->dailyAt('16:45');
+})->everyTenMinutes();	
+// })->dailyAt('16:45');
