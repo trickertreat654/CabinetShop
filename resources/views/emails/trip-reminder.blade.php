@@ -51,7 +51,7 @@
     <div class="trip">
         <div class="trip-header">
             Trip #{{ $trip->id }}: 
-            {{ optional(optional(optional($trip->cabinetJob)->customer))->account ?? 'No Account Information' }}
+            <!-- {{ optional(optional(optional($trip->cabinetJob)->customer))->account ?? 'No Account Information' }} -->
         </div>
         <p><strong>Address:</strong> 
             @if(optional(optional($trip->cabinetJob)->customer)->address)

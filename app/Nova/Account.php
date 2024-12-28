@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\HasMany;
 
 class Account extends Resource
 {
@@ -44,6 +45,8 @@ class Account extends Resource
             Text::make('Name')->sortable(),
             Text::make('Email')->sortable(),
             Text::make('Phone')->sortable(),
+            HasMany::make('Customers'),
+
         ];
     }
 

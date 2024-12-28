@@ -32,7 +32,7 @@ class CabinetJob extends Model
             \Log::info('is_completed original: ' . $cabinetJob->getOriginal('is_completed'));
     
             if ($cabinetJob->is_completed && $cabinetJob->getOriginal('is_completed') == false) {
-                \Mail::to('trickertreat654@gmail.com')->send(new \App\Mail\CabinetJobCompleted($cabinetJob));
+                \Mail::to(['trickertreat654@gmail.com','cabinetsbyjohn@yahoo.com'])->send(new \App\Mail\CabinetJobCompleted($cabinetJob));
             }
         });
     }
