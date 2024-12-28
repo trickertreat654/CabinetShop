@@ -23,4 +23,4 @@ Schedule::call(function () {
         // Send one email containing all trips
         Mail::to('trickertreat654@gmail.com')->queue(new TripReminder($trips));
     }
-})->dailyAt('16:30');
+})->dailyAt('16:45');

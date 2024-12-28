@@ -48,26 +48,28 @@
         <p>Here are the trips scheduled for tomorrow:</p>
 
         @foreach ($trips as $trip)
-        <div class="trip">
-            <div class="trip-header">
-                Trip #{{ $trip->id }}: {{ optional(optional($trip->cabinetJob)->customer)->account ?? 'No Account Information' }}
-            </div>
-            <p><strong>Address:</strong> 
-                @if(optional($trip->cabinetJob)->customer)
-                <a href="https://maps.google.com/?q={{ urlencode($trip->cabinetJob->customer->address->street . ', ' . $trip->cabinetJob->customer->address->city . ', ' . $trip->cabinetJob->customer->address->state . ' ' . $trip->cabinetJob->customer->address->zip) }}">
-            {{ $trip->cabinetJob->customer->address->street }},
-            {{ $trip->cabinetJob->customer->address->city }},
-            {{ $trip->cabinetJob->customer->address->state }}
-            {{ $trip->cabinetJob->customer->address->zip }}
-        </a>
-                @else
-                    No Address Information
-                @endif
-            </p>
-            <p><strong>Materials:</strong></p>
-            <p>{{ $trip->materials }}</p>
+    <div class="trip">
+        <div class="trip-header">
+            Trip #{{ $trip->id }}: 
+            {{ optional(optional(optional($trip->cabinetJob)->customer))->account ?? 'No Account Information' }}
         </div>
-        @endforeach
+        <p><strong>Address:</strong> 
+            @if(optional(optional($trip->cabinetJob)->customer)->address)
+                <a href="https://maps.google.com/?q={{ urlencode(optional($trip->cabinetJob->customer->address)->street . ', ' . optional($trip->cabinetJob->customer->address)->city . ', ' . optional($trip->cabinetJob->customer->address)->state . ' ' . optional($trip->cabinetJob->customer->address)->zip) }}">
+                    {{ optional($trip->cabinetJob->customer->address)->street }},
+                    {{ optional($trip->cabinetJob->customer->address)->city }},
+                    {{ optional($trip->cabinetJob->customer->address)->state }}
+                    {{ optional($trip->cabinetJob->customer->address)->zip }}
+                </a>
+            @else
+                No Address Information
+            @endif
+        </p>
+        <p><strong>Materials:</strong></p>
+        <p>{{ $trip->materials ?? 'No materials listed' }}</p>
+    </div>
+@endforeach
+
 
         <p>Thank you!</p>
     </div>
